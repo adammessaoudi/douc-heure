@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>douc'heure</title> 
+    <link rel="shortcut icon" href="assests/img/favicon.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="login.css"> 
+
+</head> 
+<body>
+
+   
+    <header class="header" id="header"> 
+        <div class="menuf">
+            <div class="brand">
+                <img scr="logo2.png">
+                <a  href="#"><img src="logoo.png" alt=""></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav__item"><a href="index.html" class="nav-champ">home</a></li>
+                    <li class="nav__item"><a href="#magasinn" class="nav-champ">magasin</a></li>
+                    <li class="nav__item"><a href="#services" class="nav-champ">service</a></li>
+                    <li class="nav__item"><a href="#package" class="nav-champ">paquets</a></li>
+                    <li class="nav__item"><a href="index.html" class="nav-champ">galerie</a></li>
+                    <li class="nav__item"><a href="#forum" class="nav-champ">forum</a></li>
+                    <li class="nav__item"><a href="#blog" class="nav-champ"></a></li>
+   <button class="bt"   onclick="document.getElementById('login-form').style.display='block'" style="width:auto;">sign up</button>
+                  <!--<button class="btnn">sign in</button>-->
+                </ul>
+            </div> 
+</div>
+
+  </header>
+          <!--      <li><button class='loginbtn' >Login</button></li>-->
+          
+    
+    <div id='login-form'class='login-page'>
+        <div class="form-box">
+            <div class='button-box'>
+                <div id='btn'></div>
+                <button type='button'onclick='login()'class='toggle-btn'>Log In</button>
+                <button type='button'onclick='register()'class='toggle-btn'>Register</button>
+            </div>
+            <form id='login' class='input-group-login'>
+                <input type='text'class='input-field'placeholder='Email Id' required >
+        <input type='password'class='input-field'placeholder='Enter Password' required>
+        <input type='checkbox'class='check-box'><span>Remember Password</span>
+        <button type='submit'class='submit-btn'>Log in</button>
+     </form>
+     <form id='register' class='input-group-register'>
+         <input type='text'class='input-field'placeholder='First Name' required>
+         <input type='text'class='input-field'placeholder='Last Name ' required>
+         <input type='email'class='input-field'placeholder='Email Id' required>
+         <input type='password'class='input-field'placeholder='Enter Password' required>
+         <input type='password'class='input-field'placeholder='Confirm Password'  required>
+         <input type='checkbox'class='check-box'><span>I agree to the terms andconditions</span>
+                <button type='submit'class='submit-btn'>Register</button>
+         </form>
+        </div>
+    </div>
+
+<script>
+    var x=document.getElementById('login');
+    var y=document.getElementById('register');
+    var z=document.getElementById('btn');
+    function register()
+    {
+        x.style.left='-400px';
+        y.style.left='50px';
+        z.style.left='110px';
+    }
+    function login()
+    {
+        x.style.left='50px';
+        y.style.left='450px';
+        z.style.left='0px';
+    }
+</script>
+<script>
+    /*var modal = document.getElementById('login-form');
+    window.onclick = function(event) 
+    {
+        if (event.target == modal) 
+        {
+            modal.style.display = "none";
+        }
+    }*/
+</script>
+  <div class="coeur">  
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+    <img src="coeur.png">
+</div>  
+
+
+</body>
+</html>
+
+
