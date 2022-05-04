@@ -1,8 +1,10 @@
 <?php
-
+include '../../controller/categorie_c.php';
 include_once '../../controller/produitC.php';
 include_once '../../model/produit.php';
-
+include_once '../../model/categorie.php';
+$categorieC = new categorieC();
+$listec = $categorieC->afficherCategorie();
 $error = "";
 
 $produit = null;
@@ -55,7 +57,7 @@ if (
     <div class="container">
         <div class="row">
             <div class="col-12">
-                               <?php require_once('navbar.php'); ?>
+                               <?php require_once('navbar.php'); ?> 
 
             </div>
         </div>
@@ -65,7 +67,7 @@ if (
                 <div class="bg-white tm-block">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="tm-block-title d-inline-block">Add product</h2>
+                           
                         </div>
                     </div>
                     <div class="details">
@@ -77,32 +79,58 @@ if (
 
                             <form action="" method="POST" name="ajouterProduitForm" onsubmit="return ajouterProduit()">
                                 <div>
-                                    <label for="libelle">libelle:
+                                    <label for="libelle" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Nom du produit:
                                     </label>
                                     <input type="text" name="libelle" id="libelle" maxlength="20">
                                 </div>
                                 <div>
-                                    <label for="nb_calories">Nombre de Colis:
+                                    <label for="nb_calories" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Nombre du produit:
                                     </label>
                                     <input type="text" name="nb_calories" id="nb_calories">
                                 </div>
                                 <div>
-                                    <label for="prix">Prix:
+                                    <label for="prix" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Prix:
                                     </label>
                                     <input type="text" name="prix" id="prix">
                                 </div>
                                 <div>
-                                    <label for="description">Description:
+                                    <label for="description" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Description:
                                     </label>
                                     <input type="text" name="description" id="description">
                                 </div>
-                                <div>
-                                    <label for="categorie">Categorie:
+                               
+                                
+                                <div class="input-group mb-3">
+                                
+                                
+                                    
+                                    <label for="categorie" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Categorie:
                                     </label>
-                                    <input type="text" name="categorie" id="categorie">
+                                    
+                                    
+                                    <div class="input-group mb-3">
+                                    <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" name="categorie" id="category">
+                                    <option selected>Choisir</option>
+                                    <?php
+                                        foreach ($listec as $categorie) {
+                                        ?>    
+                                        
+                                   
+                                       
+                                        <option value=<?php echo $categorie['idCategorie']; ?> >
+                                        <?php echo $categorie['nomCategorie']; ?> <?php } ?>
+                                    
+                                    
+                                    </option>
+                                        
+                                    </select>
+                                    
+                                    </div>
+                              
                                 </div>
+                                
                                 <div>
-                                    <label for="img">image:
+                                    <label for="img">Image:
                                     </label>
                                     <input type="file" name="img" id="img">
                                 </div>
@@ -124,6 +152,7 @@ if (
             </div>
         </footer>
     </div>
+    
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
@@ -136,8 +165,7 @@ if (
             $('#expire_date').datepicker();
         });
     </script>
-    	<script src="addProduct.js"></script>
-
+<script src="controle.js"></script>
 </body>
 
 </html>

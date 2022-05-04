@@ -44,19 +44,19 @@ $listec = $categorieC->afficherCategorie();
                     <div class="bg-white tm-block h-100">
                         <div class="row">
                             <div class="col-md-8 col-sm-12">
-                                <h2 class="tm-block-title d-inline-block">categorie</h2>
+                                <h2 class="tm-block-title d-inline-block">Categorie</h2>
 
                             </div>
                             <div class="col-md-4 col-sm-12 text-right">
-                                <a href="ajoutercategorie.php" class="btn btn-small btn-primary">Add New categorie</a>
+                                <a href="ajoutercategorie.php" class="btn btn-small btn-primary">Ajouter nouvelle catégorie</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                    <table class="table table-hover table-striped tm-table-striped-even mt-3">
                                 <thead>
                                     <tr class="tm-bg-gray">
-                                        <th scope="col">Category id</th>
-                                        <th scope="col" class="text-center">Category name</th>
+                                        <th scope="col">Id catégorie</th>
+                                        <th scope="col" class="text-center">Nom catégorie</th>
                                         <th scope="col" class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -74,7 +74,7 @@ $listec = $categorieC->afficherCategorie();
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                < </tr>
+                                 </tr>
 
 
 
@@ -86,7 +86,7 @@ $listec = $categorieC->afficherCategorie();
 
                         <div class="tm-table-mt tm-table-actions-row">
                             <div class="tm-table-actions-col-left">
-                                <button class="btn btn-danger">Delete Selected Items</button>
+                                
                             </div>
                             <div class="tm-table-actions-col-right">
                                 <span class="tm-pagination-label">Page</span>
@@ -109,14 +109,11 @@ $listec = $categorieC->afficherCategorie();
 
                 <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title d-inline-block">Product Categories</h2>
+                        
                         <table class="table table-hover table-striped mt-3">
                             <tbody>
 
-                            </tbody>
-                        </table>
-
-                        <a href="add-category.html" class="btn btn-primary tm-table-mt">Add New Category</a>
+                     
                     </div>
                 </div>
             </div>
@@ -141,6 +138,52 @@ $listec = $categorieC->afficherCategorie();
             });
         })
     </script>
+    <form method="post">
+<label>Search</label>
+<input type="text" name="search">
+<input type="submit" name="submit">
+	
+</form>
 </body>
 
 </html>
+<?php
+
+$con = new PDO("mysql:host=localhost;dbname=integrationfinale",'root','');
+
+if (isset($_POST["submit"])) {
+	$str = $_POST["search"];
+	$sth = $con->prepare("SELECT * FROM categorie WHERE idCategorie = '$str'");
+
+	$sth->setFetchMode(PDO:: FETCH_OBJ);
+	$sth -> execute();
+
+	if($row = $sth->fetch())
+	{
+		?>
+		<br><br><br>
+		<table>
+			<tr>
+				<th>idCategorie</th>
+				<th>nomCategorie</th>
+               
+			</tr>
+			<tr>
+				<td><?php echo $row->idCategorie; ?></td>
+				<td><?php echo $row->nomCategorie;?></td>
+                
+			</tr>
+
+		</table>
+<?php 
+	}
+		
+		
+		else{
+			echo "id Does not exist";
+		}
+
+
+}
+
+?>

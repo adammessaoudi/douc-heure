@@ -1,7 +1,11 @@
 <?php
 include '../../controller/produitC.php';
+include_once 'navbar.php';
 $ProduitC = new produitC();
 $listep = $ProduitC->afficherproduit();
+$con = mysqli_connect("localhost","root","","integrationfinale");
+ 
+
 ?>
 
 
@@ -27,15 +31,36 @@ $listep = $ProduitC->afficherproduit();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['libelle', 'nb_calories'],
+         <?php
+         $sql = "SELECT * FROM produit";
+         $fire = mysqli_query($con,$sql);
+          while ($result = mysqli_fetch_assoc($fire)) {
+            echo"['".$result['libelle']."',".$result['nb_calories']."],";
+          }
+
+         ?>
+        ]);
+
+        
+    </script>
+    
 </head>
 
-<body id="reportsPage" class="bg02">
-    <div class="" id="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                <?php require_once('navbar.php'); ?>
 
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
             <!-- row -->
@@ -44,20 +69,20 @@ $listep = $ProduitC->afficherproduit();
                     <div class="bg-white tm-block h-100">
                         <div class="row">
                             <div class="col-md-8 col-sm-12">
-                                <h2 class="tm-block-title d-inline-block">Product</h2>
+                                <h2 class="tm-block-title d-inline-block">Produits</h2>
 
                             </div>
                             <div class="col-md-4 col-sm-12 text-right">
-                                <a href="addproduit.php" class="btn btn-small btn-primary">Add New product</a>
+                                <a href="addproduit.php" class="btn btn-small btn-primary">Ajouter nouveau produit</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped tm-table-striped-even mt-3">
                                 <thead>
                                     <tr class="tm-bg-gray">
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Product Image</th>
-                                        <th scope="col">Product Name</th>
+                                        <th scope="col">ID produit</th>
+                                        <th scope="col">Image produit</th>
+                                        <th scope="col">Nom produit</th>
                                         <th scope="col">Description</th>
                                         <th scope="col" class="text-center">Actions</th>
                                     </tr>
@@ -92,7 +117,7 @@ $listep = $ProduitC->afficherproduit();
 
                         <div class="tm-table-mt tm-table-actions-row">
                             <div class="tm-table-actions-col-left">
-                                <button class="btn btn-danger">Delete Selected Items</button>
+                                
                             </div>
                             <div class="tm-table-actions-col-right">
                                 <span class="tm-pagination-label">Page</span>
@@ -113,16 +138,17 @@ $listep = $ProduitC->afficherproduit();
                     </div>
                 </div>
 
-                <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title d-inline-block">Product Categories</h2>
+                <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col"   >
+                    <div class="bg-white tm-block h-100"  >
+                        
                         <table class="table table-hover table-striped mt-3">
-                            <tbody>
-
-                            </tbody>
+                        <div id="piechart" style="width: 300px; "></div>    
                         </table>
-
-                        <a href="add-category.html" class="btn btn-primary tm-table-mt">Add New Category</a>
+                        
+                        <div class="tm-table-actions-col-left">
+                                
+                       
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,6 +173,54 @@ $listep = $ProduitC->afficherproduit();
             });
         })
     </script>
+    
 </body>
 
 </html>
+<?php
+echo "<table style='border: solid 1px black;'>";
+echo "<tr><th>id</th><th>nom produit</th><th>prix</th></tr>";
+
+class TableRows extends RecursiveIteratorIterator {
+  function __construct($it) {
+    parent::__construct($it, self::LEAVES_ONLY);
+  }
+
+  function current() {
+    return "<td style='width: 150px; border: 1px solid black;'>" . parent::current(). "</td>";
+  }
+
+  function beginChildren() {
+    echo "<tr>";
+  }
+
+  function endChildren() {
+    echo "</tr>" . "\n";
+  }
+}
+
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDBPDO";
+
+try {
+  
+  $conn = new PDO("mysql:host=localhost;dbname=integrationfinale",'root','');
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $stmt = $conn->prepare("SELECT id, libelle, prix FROM produit ORDER BY prix");
+  $stmt->execute();
+
+  // set the resulting array to associative
+  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+  foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+    echo $v;
+  }
+}
+catch(PDOException $e) {
+  echo "Error: " . $e->getMessage();
+}
+$conn = null;
+echo "</table>";
+?>
