@@ -77,7 +77,7 @@ $con = mysqli_connect("localhost","root","","integrationfinale");
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                            <table class="table table-hover table-striped tm-table-striped-even mt-3" id="dataTable">
                                 <thead>
                                     <tr class="tm-bg-gray">
                                         <th scope="col">ID produit</th>
@@ -177,50 +177,81 @@ $con = mysqli_connect("localhost","root","","integrationfinale");
 </body>
 
 </html>
-<?php
-echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>id</th><th>nom produit</th><th>prix</th></tr>";
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Recherche produit" title="Type in a name">
 
-class TableRows extends RecursiveIteratorIterator {
-  function __construct($it) {
-    parent::__construct($it, self::LEAVES_ONLY);
-  }
-
-  function current() {
-    return "<td style='width: 150px; border: 1px solid black;'>" . parent::current(). "</td>";
-  }
-
-  function beginChildren() {
-    echo "<tr>";
-  }
-
-  function endChildren() {
-    echo "</tr>" . "\n";
-  }
-}
-
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDBPDO";
-
-try {
-  
-  $conn = new PDO("mysql:host=localhost;dbname=integrationfinale",'root','');
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $stmt = $conn->prepare("SELECT id, libelle, prix FROM produit ORDER BY prix");
-  $stmt->execute();
-
-  // set the resulting array to associative
-  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-  foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-    echo $v;
+<script>
+    function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("dataTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
   }
 }
-catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
+</script>
+<?php  
+//export.php  
+$connect = mysqli_connect("localhost", "root", "", "integrationfinale");
+$output = '';
+if(isset($_POST["export"]))
+{
+ $query = "SELECT * FROM produit";
+ $result = mysqli_query($connect, $query);
+ if(mysqli_num_rows($result) > 0)
+ {
+  $output .= '
+   <table class="table" bordered="1">  
+                    <tr>  
+                         <th>id</th>  
+                         <th>nom produit</th>  
+                         <th>nbr produit</th>  
+                         <th>prix</th>
+                         <th>categorie</th>
+      
+                    </tr>
+  ';
+  while($row = mysqli_fetch_array($result))
+  {
+   $output .= '
+    <tr>  
+                         <td>'.$row["id"].'</td>  
+                         <td>'.$row["libelle"].'</td>  
+                         <td>'.$row["nb_calories"].'</td>  
+                         <td>'.$row["prix"].'</td>  
+                         <td>'.$row["categorie"].'</td>  
+                    </tr>
+   ';
+  }
+  $output .= '</table>';
+  header('Content-Type: application/xls');
+  header('Content-Disposition: attachment; filename=download.xls');
+  echo $output;
+ }
 }
-$conn = null;
-echo "</table>";
-?>
+?>   
+<table class="table table-bordered">
+     <tr>  
+	
+     <?php
+	  $query = "SELECT * FROM produit";
+	  $result = mysqli_query($connect, $query);
+     while($row = mysqli_fetch_array($result))  
+     {  
+   
+     }
+     ?>
+    </table>
+    <br />
+    <form method="post" action="excel.php">
+     <input type="submit" name="export" class="btn btn-success" value="Export Excel" />
+    </form>

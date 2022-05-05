@@ -23,9 +23,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="stat.php">Statistiques</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="tri.php">Tri</a>
-                            </li>
+                            
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">

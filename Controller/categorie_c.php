@@ -3,6 +3,40 @@
 	include_once '../../model/categorie.php';
 
 	class categorieC {
+		function triPrix()
+		{
+			$db = config::getConnexion();
+			$sql = "SELECT * FROM categorie ORDER BY idCategorie ASC";
+			
+			try{
+				$listeevenement = $db->query($sql);
+				return $listeevenement;
+			}
+			   catch (Exception $e)
+			   {
+				   die('Erreur:'.$e->getMessage());
+			   }
+		
+		}
+		
+	
+		 function triPrixDesc()
+		{
+			$db = config::getConnexion();
+			$sql = "SELECT * FROM categorie ORDER BY idCategorie DESC";
+			try{
+				$listeevenement = $db->query($sql);
+				return $listeevenement;
+			}
+			   catch (Exception $e)
+			   {
+				   die('Erreur:'.$e->getMessage());
+			   }
+		
+		}
+		
+
+
 		function afficherCategorie(){
 			$sql="SELECT * FROM categorie";
 			$db = config::getConnexion();

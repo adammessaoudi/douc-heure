@@ -2,6 +2,14 @@
 include '../../controller/categorie_c.php';
 $categorieC = new categorieC();
 $listec = $categorieC->afficherCategorie();
+if (isset($_POST['tri']))
+{
+    if($_POST['tri']=="idASC")
+    {$listec=$categorieC->triPrix();}
+    if($_POST['tri']=="idDESC")
+    {$listec=$categorieC->triPrixDesc();}
+    
+}
 ?>
 
 
@@ -144,8 +152,19 @@ $listec = $categorieC->afficherCategorie();
 <input type="submit" name="submit">
 	
 </form>
+<form action="" method="POST">
+    <select name="tri" id="tri">
+    <option prixASC></option>
+        <option value="idASC">idASC</option>
+        <option value="idDESC">idDESC</option>
+        
+        <input type="submit" value="Trier">
+    </select>
+    <!--<input type="submit" value="">-->
+</form>
 </body>
 
+</form>
 </html>
 <?php
 
