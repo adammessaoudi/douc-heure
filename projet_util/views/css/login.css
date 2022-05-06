@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700;800&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+*, ::after, ::before
+{
+    margin: 0 ;
+     padding: 0;
+     box-sizing: border-box;
+     text-decoration: none;
+     list-style:none ; 
+    
+}
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#ebc2c2;
+ 
+  /*height:  200vh;*/
+  display:grid;
+  place-items: center;
+  color :#fff  ; 
+  font-weight: 500;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+.form
+{ 
+  display: flex;
+position:relative  ; 
+top:-30px ;  
+left: 800px; ;
+font-size:20px ;
+font-weight: 900;
+text-transform: uppercase;
+font-family: Verdana, Geneva, Tahoma, sans-serif; 
+gap:40px; 
+
+}
+a
+{ 
+  color: rgb(15, 2, 2);
+  text-decoration: none;
+} 
+
+.A:hover
+{ 
+  
+  border-bottom: solid 2px red;
+}
+.border
+{ 
+   position: relative; 
+   height: 60px ;
+   width: 2100px ; 
+   background-color: #dd6dc5  ;
+
+   border-radius: 20px; 
+   padding:0px;
+   
+   
+} 
+ 
+.wrapper{ 
+  position:absolute  ; 
+  width: 100% ;
+  height: 100% ;
+  overflow:hidden ; 
+  background: linear-gradient(10deg ,rgb(14, 1, 10),rgb(209, 130, 170) 40% ,rgb(233, 45, 233) 100%);
+ /* background: linear-gradient(to right, #fbd3e9, #bb377d);*/
+
+}
+
+
+
+
+
+.header
+{
+   /* position:fixed;*/
+   width: 100%;
+   height: 100%;
+   position: relative;
+    top:0 ; 
+    left:0 ; 
+    right: 0;
+    height: 5.60rem;
+    background-color: white;
+    z-index: 100;
+    transition: all 0.4s ease ;
+}
+.menuf
+{
+    width: 100%;
+    max-width: 1230px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    
+}
+.nav-menu .nav-list 
+{
+    display: flex;  
+    position: relative;
+    right: 60px;
+    gap: 30px;
+}
+.nav-menu li 
+{
+margin-right: 2rem;
+}
+.nav-champ
+{ 
+color:black ; 
+font-weight: bold;
+text-transform: capitalize;
+position: relative;
+transition: all 0.4s ease ; 
+}
+.nav-champ::before
+{ 
+    content: '';
+    position: absolute;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #d36131;
+    transition: all 0.4s ease-in-out;
+}
+.nav-champ:hover::before
+{ 
+    width: 100%;
+}
+.brand
+{ 
+    position: relative;
+    right:150px ;
+} 
+/*boutton*/
+.bt{ 
+
+    width:120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: black;
+        color: white;
+        border: 2px solid black;
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1rem;
+        padding: 10px 10px;
+        outline: none;
+        cursor: pointer;
+        transition: all 400ms ease-in;
+        
+        position: relative ; 
+        left:130px ;
+        bottom: 5px;
+    }
+    .bt1{ 
+      
+            width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 120;
+            text-transform: uppercase;
+            line-height: 1rem;
+            padding:6px 10px;
+            outline: none;
+            cursor: pointer;
+            transition: all 400ms ease-in;
+            position: relative;
+            left: 0px;
+            bottom: -1px;
+      
+            
+           
+    }
+    .bt:hover{
+        background-color: transparent;
+        color: black;
+    }
+.login-wrap{
+	width:100%;
+	margin:auto;
+	max-width:525px;
+	min-height:670px;
+	position:relative;
+	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	background:rgba(40,57,101,.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	transform:rotateY(180deg);
+	backface-visibility:hidden;
+	transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+	margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#fff;
+	border-color:#1161ee;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+	width:100%;
+	color:#fff;
+	display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+	text-security:circle;
+	-webkit-text-security:circle;
+}
+.login-form .group .label{
+	color:#aaa;
+	font-size:12px;
+}
+.login-form .group .button{
+	background:#1161ee;
+}
+.login-form .group label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+	color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+	background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+.foot-lnk{
+	text-align:center;
+}
